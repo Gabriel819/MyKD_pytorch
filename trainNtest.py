@@ -31,7 +31,6 @@ def train_model(model, loss_function, optimizer, data_loader):
         # statistics
         current_loss += loss.item() * inputs.size(0)
         current_acc += torch.sum(predictions == labels.data)
-        print('Train '+str(i+1)+', loss : ' + str(current_loss/(i+1))+', acc : '+str(current_acc.item()/(i+1)))
 
     total_loss = current_loss / len(data_loader.dataset)
     total_acc = current_acc.double() / len(data_loader.dataset)
@@ -61,7 +60,6 @@ def test_model(model, loss_function, data_loader):
         # statistics
         current_loss += loss.item() * inputs.size(0)
         current_acc += torch.sum(predictions == labels.data)
-        print('Test '+str(i)+' current loss : '+str(current_loss)+' current acc : '+str(current_acc.item())+'/'+str(i))
 
     total_loss = current_loss / len(data_loader.dataset)
     total_acc = current_acc.double() / len(data_loader.dataset)
@@ -101,8 +99,6 @@ def train_kd(model, teacher_model, student_optimizer, data_loader, alpha, T):
         # statistics
         current_loss += loss.item() * inputs.size(0)
         current_acc += torch.sum(predictions == labels.data)
-        print('Train ' + str(i + 1) + ', loss : ' + str(current_loss / (i + 1)) + ', acc : ' + str(
-            current_acc.item() / (i + 1)))
 
     total_loss = current_loss / len(data_loader.dataset)
     total_acc = current_acc.double() / len(data_loader.dataset)
